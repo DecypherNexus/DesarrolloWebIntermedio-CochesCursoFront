@@ -1,5 +1,6 @@
 import {Component} from '@angular/core';
 import {Router} from "@angular/router";
+import {FormGroup} from "@angular/forms";
 
 @Component({
   selector: 'app-login',
@@ -8,17 +9,11 @@ import {Router} from "@angular/router";
 })
 export class LoginComponent {
 
-  private cadena: string | number = "";
-
-  constructor(private router: Router) {
+  constructor(private router: Router, private formGroup: FormGroup) {
   }
 
   public signIn(): void {
     alert("Inicio de Sesión");
-  }
-
-  public signUp(): void {
-    this.router.navigateByUrl("autenticacion/registro");
   }
 
 }
