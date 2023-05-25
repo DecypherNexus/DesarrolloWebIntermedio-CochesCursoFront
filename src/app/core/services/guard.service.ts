@@ -14,10 +14,10 @@ export class GuardService {
 
     if (this.tokenService.getToken()) {
       this.router.navigateByUrl("/portafolio");
-      return true;
+      return false;
     }
 
-    return false;
+    return true;
 
   }
 

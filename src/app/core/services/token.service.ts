@@ -14,11 +14,10 @@ export class TokenService {
   }
 
   public saveToken(token: string): void {
-    setCookie("token", token, {expires: 1, path: "/auth"});
+    setCookie("token", token, {expires: 1, path: "/"})
   }
 
   public deleteToken(): void {
-
   }
 
 }

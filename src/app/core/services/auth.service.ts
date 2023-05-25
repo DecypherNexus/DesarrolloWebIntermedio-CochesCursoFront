@@ -5,6 +5,8 @@ import {environment} from "../../../environments/environment.development";
 import {AuthLoginResponseDTO} from "../dtos/AuthLoginResponseDTO";
 import {TokenService} from "./token.service";
 import {Observable, tap} from "rxjs";
+import {RegisterRequestDTO} from "../dtos/RegisterRequestDTO";
+import {RegisterResponseDTO} from "../dtos/RegisterResponseDTO";
 
 const {apiUrl} = environment;
 
@@ -24,9 +26,12 @@ export class AuthService {
       tap(response => {
         this.tokenService.saveToken(response.jwt);
       })
-
     );
 
+  }
+
+  public register(registerRequestDTO: RegisterRequestDTO): Observable<RegisterResponseDTO> {
+    return this.httpClient.post<RegisterResponseDTO>(`${apiUrl}/auth/register`, registerRequestDTO);
   }
 
 }

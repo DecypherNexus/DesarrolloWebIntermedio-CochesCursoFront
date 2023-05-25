@@ -1,12 +1,12 @@
 import {Component} from '@angular/core';
-import {Router} from "@angular/router";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
-import {AppBaseComponent} from "../../../../core/utils/AppBaseComponent";
+import {Router} from "@angular/router";
 import {AuthLoginRequestDTO} from "../../../../core/dtos/AuthLoginRequestDTO";
+import {FormErrors} from "../../../../core/enums/FormErrors";
 import {AuthService} from "../../../../core/services/auth.service";
-import {lastValueFrom} from "rxjs";
-import {AuthLoginResponseDTO} from "../../../../core/dtos/AuthLoginResponseDTO";
 import {TokenService} from "../../../../core/services/token.service";
+import {AppBaseComponent} from "../../../../core/utils/AppBaseComponent";
+import {lastValueFrom} from "rxjs";
 
 @Component({
   selector: 'app-login',
@@ -63,10 +63,10 @@ export class LoginComponent extends AppBaseComponent {
 
     if (this.isFieldTouched(this.loginForm, field)) {
 
-      if (this.loginForm.get(field).hasError("required")) {
-        errorMessage = "El campo es obligatorio";
-      } else if (this.loginForm.get(field).hasError("email")) {
-        errorMessage = "El campo requiere el formato de email";
+      if (this.loginForm.get(field).hasError('required')){
+        errorMessage = FormErrors.REQUIRED;
+      } else if (this.loginForm.get(field).hasError('email')) {
+        errorMessage = FormErrors.EMAIL_FORMAT;
       }
 
     }
