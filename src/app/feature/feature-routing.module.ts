@@ -1,18 +1,18 @@
 import {inject, NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
-import {GuardService} from "../core/services/guard.service";
+import {GuardAuthService} from "../core/services/guard-auth.service";
 
 const routes: Routes = [
   {
     path: "autenticacion",
     // canActivate: [AuthWithGuard],
-    canActivate: [() => inject(GuardService).canActivateWithAuth()],
+    canActivate: [() => inject(GuardAuthService).canActivateWithAuth()],
     loadChildren: () => import("./auth/auth.module").then(a => a.AuthModule)
   },
   {
     path: "portafolio",
     // canActivate: [AuthWithoutGuard],
-    canActivate: [() => inject(GuardService).canActivateWithoutAuth()],
+    canActivate: [() => inject(GuardAuthService).canActivateWithoutAuth()],
     loadChildren: () => import("./home/home.module").then(h => h.HomeModule)
   }
 ];

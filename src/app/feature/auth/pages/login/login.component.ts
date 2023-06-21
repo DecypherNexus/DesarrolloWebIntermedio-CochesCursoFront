@@ -7,6 +7,7 @@ import {AuthService} from "../../../../core/services/auth.service";
 import {TokenService} from "../../../../core/services/token.service";
 import {AppBaseComponent} from "../../../../core/utils/AppBaseComponent";
 import {lastValueFrom} from "rxjs";
+import Swal from "sweetalert2";
 
 @Component({
   selector: 'app-login',
@@ -50,8 +51,14 @@ export class LoginComponent extends AppBaseComponent {
       await this.router.navigateByUrl("/portafolio");
 
     } else {
-      alert("Errores en el Formulario");
-      // console.log(this.getAllFormErrors(this.loginForm));
+
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: 'Hay errores en el formulario, reviselo por favor'
+      })
+
+      console.log(this.getAllFormErrors(this.loginForm));
       this.loginForm.markAllAsTouched();
     }
 
